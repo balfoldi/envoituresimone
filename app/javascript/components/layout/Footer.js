@@ -2,7 +2,7 @@ import React from "react"
 
 const Footer = () => {
   return (
-    <footer className="mt-auto page-footer font-small blue pt-4 bg-light">
+    <footer className="mt-auto page-footer font-small blue pt-4 bg-light ">
       <div className="container-fluid text-center text-md-left">
         {/* <div className="row">
 
@@ -34,8 +34,8 @@ const Footer = () => {
         </div> */}
       </div>
 
-      <div className="footer-copyright text-center py-4">Association 1er juillet 1901:
-        <a href="https://envoituresimone.com/"> envoituresimone</a>
+      <div className="footer-copyright text-center py-4">
+        <p>Association 1er juillet 1901 : <a href="/">envoituresimone</a></p>
       </div>
 
     </footer>

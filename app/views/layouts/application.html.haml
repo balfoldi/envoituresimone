@@ -11,8 +11,7 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body.h-100.d-flex.flex-column
     = react_component("layout/NavBar")
-    = react_component("layout/Banner")
-    .container
+    .mb-3
       = yield
     .mt-auto
       = react_component("layout/Footer")
