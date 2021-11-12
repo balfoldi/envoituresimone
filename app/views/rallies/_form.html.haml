@@ -1,0 +1,16 @@
+= form_for @rally do |f|
+  - if @rally.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@rally.errors.count, "error")} prohibited this rally from being saved:"
+      %ul
+        - @rally.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :presentation
+    = f.text_area :presentation
+  .actions
+    = f.submit 'Save'

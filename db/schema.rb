@@ -10,18 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_11_103224) do
+ActiveRecord::Schema.define(version: 2021_11_12_141917) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.integer "rally_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["rally_id"], name: "index_articles_on_rally_id"
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "rallies", force: :cascade do |t|
     t.string "title"
-    t.text "content"
+    t.text "presentation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

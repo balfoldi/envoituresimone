@@ -1,0 +1,8 @@
+.container
+  = react_component("Rally", rally: @rally)
+
+  = render 'articles/form', article: Article.new, rally: @rally
+
+  %h3.text-center Articles
+  - @rally.articles.each do |article|
+    = react_component("Article", article: article, date: article.created_at.strftime("Publié le %d/%m/%Y") )

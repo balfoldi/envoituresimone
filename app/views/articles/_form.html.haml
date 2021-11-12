@@ -1,16 +1,7 @@
-= form_for @article do |f|
-  - if @article.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@article.errors.count, "error")} prohibited this article from being saved:"
-      %ul
-        - @article.errors.full_messages.each do |message|
-          %li= message
-
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :content
-    = f.text_area :content
-  .actions
-    = f.submit 'Save'
+%h3 Nouveau article
+= form_with model: [rally, article] do |f|
+  = f.hidden_field :rally_id, { value: rally.id }
+  = f.text_field :title, { class: "form-control mb-3", placeholder: "Titre..." }
+  = react_component("Ckeditor5", name: "article[content]", value: article.content)
+  = f.submit "Créer un article", { class: "btn btn-success mb-3 w-100"}
+%hr

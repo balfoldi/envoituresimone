@@ -1,0 +1,6 @@
+.container
+  %h1 Nouveau rallye
+  = form_with model: @rally do |f|
+    = f.text_field :title, { class: "form-control mb-3", placeholder: "Titre..." }
+    = react_component("Ckeditor5", name: "rally[presentation]", value: @rally.presentation)
+    = f.submit "Créer un rally", { class: "btn btn-success mb-3 w-100"}

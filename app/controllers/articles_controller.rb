@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.save
         @articles = Article.all
-        format.html { render :index, notice: "Article was successfully created." }
+        format.html { redirect_to rally_path(@article.rally), notice: "Article was successfully created." }
         format.json { render :index, status: :created, location: @article }
         format.js { }
       else
@@ -69,6 +69,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :content)
+      params.require(:article).permit(:title, :content, :rally_id)
     end
 end
