@@ -1,14 +1,15 @@
 = form_with model: [rally, article] do |f|
-  .card
-    .card-header
-      .card-title Nouveau article
-    .card-body
-      = f.hidden_field :rally_id, { value: rally.id }
-      %label Titre
-      = f.text_field :title, { class: "form-control mb-3", placeholder: "Titre..." }
-      %label Image
-      = f.file_field :image, { class: "form-control mb-3", accept: 'image/png,image/gif,image/jpeg' }
-      %label Contenu
-      = react_component("Ckeditor5", name: "article[content]", value: article.content)
-    .card-footer
-      = f.submit "Créer un article", { class: "btn btn-success mb-3 w-100"}
+  - if article.new_record?
+    = f.hidden_field :rally_id, { value: rally.id }
+  %label Titre
+  = f.text_field :title, { class: "form-control mb-3", placeholder: "Titre..." }
+  %label Image
+  -if f.object.image.attached?
+    = image_tag f.object.image, class: "img-fluid"
+    .form-check.form-switch
+    = f.check_box :delete_image, class: "form-check-input", id: "deleteImage"
+    %label.form-check-label{:for => "deleteImage"} Effacer l'image?
+  = f.file_field :image, { class: "form-control mb-3", accept: 'image/png,image/gif,image/jpeg' }
+  %label Contenu
+  = react_component("Ckeditor5", name: "article[content]", value: article.content)
+  = f.submit article.new_record? ? "Créer un article" : "Editer l'article", { class: "btn btn-success mb-3 w-100"}

@@ -1,5 +1,5 @@
 class RalliesController < ApplicationController
-  before_action :set_rally, only: %i[ show edit update destroy ]
+  before_action :set_rally, only: %i[ show update destroy ]
 
   def show
     @article = Article.new
@@ -32,7 +32,7 @@ class RalliesController < ApplicationController
 
   def destroy
     @rally.destroy
-    redirect_to root_path, notice: "Le rallye a été effacé"
+    redirect_to root_path, notice: "Le rally \"#{@rally.title}\" a été effacé."
   end
 
   private

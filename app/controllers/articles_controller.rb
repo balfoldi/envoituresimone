@@ -1,73 +1,35 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show edit update destroy ]
+  before_action :set_article, only: %i[ update destroy ]
 
-  # GET /articles or /articles.json
-  def index
-    @articles = Article.all
-
-    @article = Article.new
-  end
-
-  # GET /articles/1 or /articles/1.json
-  def show
-  end
-
-  # GET /articles/new
-  def new
-    @article = Article.new
-  end
-
-  # GET /articles/1/edit
-  def edit
-  end
-
-  # POST /articles or /articles.json
   def create
     @article = Article.new(article_params)
 
-    respond_to do |format|
-      if @article.save
-        @articles = Article.all
-        format.html { redirect_to rally_path(@article.rally), notice: "L'article \"#{@article.title}\" a été ajouté." }
-        format.json { render :index, status: :created, location: @article }
-        format.js { }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-        format.js { }
-      end
+    if @article.save
+      redirect_to @article.rally, notice: "L'article \"#{@article.title}\" a été créé."
+    else
+      render :new, alert: "Erreur lors de la mise à jour de l'article."
     end
   end
 
-  # PATCH/PUT /articles/1 or /articles/1.json
   def update
-    respond_to do |format|
-      if @article.update(article_params)
-        format.html { redirect_to @article, notice: "Article was successfully updated." }
-        format.json { render :show, status: :ok, location: @article }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
+    @article.image.purge if params[:article][:delete_image] == "1"
+    if @article.update(article_params)
+      redirect_to @article.rally, notice: "L'article \"#{@article.title}\" a été mis à jour."
+    else
+      render :new, alert: "Erreur lors de la mise à jour de l'article."
     end
   end
 
-  # DELETE /articles/1 or /articles/1.json
   def destroy
     @article.destroy
-    respond_to do |format|
-      format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to @article.rally, notice: "L'article \"#{@article.title}\" a été effacé."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def article_params
       params.require(:article).permit(:title, :content, :rally_id, :image)
     end
