@@ -11,12 +11,14 @@
           %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
             Rallyes
           %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            - if current_user
-              %li
-                = link_to "Rajouter un rallye", new_rally_path, class: "dropdown-item"
             - @rallies.each do |rally|
               %li
                 = link_to rally.title, rally_path(rally), class: "dropdown-item"
+            - if current_user
+              %li
+                %hr.dropdown-divider
+              %li
+                = link_to "Rajouter un rallye", new_rally_path, class: "dropdown-item"
       %ul.navbar-nav.d-flex.flex-reverse
         %li.nav-item.dropdown
           %a#navbarDropdown2.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
