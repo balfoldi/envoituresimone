@@ -5,7 +5,7 @@ const sanitized = require("sanitized");
 const ArticlesCard = ({rally}) => {
   return (
     <>
-      <h3>{rally?.title}</h3>
+      <h3 className="text-center" >{rally?.title}</h3>
       <div dangerouslySetInnerHTML={{__html: sanitized(rally?.presentation)}}/>
       <hr />
     </>

@@ -8,6 +8,9 @@ gem 'react-rails'
 gem "haml-rails"
 gem "sanitize"
 
+# User accounts
+gem 'devise'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
