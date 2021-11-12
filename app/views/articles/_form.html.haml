@@ -1,7 +1,11 @@
 %h3 Nouveau article
 = form_with model: [rally, article] do |f|
   = f.hidden_field :rally_id, { value: rally.id }
+  %label Titre
   = f.text_field :title, { class: "form-control mb-3", placeholder: "Titre..." }
+  %label Image
+  = f.file_field :image, { class: "form-control mb-3", accept: 'image/png,image/gif,image/jpeg' }
+  %label Contenu
   = react_component("Ckeditor5", name: "article[content]", value: article.content)
   = f.submit "Créer un article", { class: "btn btn-success mb-3 w-100"}
 %hr
