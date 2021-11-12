@@ -1,23 +1,15 @@
-%h1 Listing articles
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Content
-      %th
-      %th
-      %th
+%h1.text-center Actualité
 
-  %tbody
-    - @articles.each do |article|
-      %tr
-        %td= article.title
-        %td= article.content
-        %td= link_to 'Show', article
-        %td= link_to 'Edit', edit_article_path(article)
-        %td= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }
+= form_with model: @article do |f|
+  = f.text_field :title, { class: "form-control mb-3", placeholder: "Titre..." }
+  = react_component("Ckeditor5", name: "article[content]", value: @article.content)
+  = f.submit "Envoyer", { class: "btn btn-success mb-3 w-100"}
+
+- @articles.each do |article|
+  = react_component("ArticlesCard", article: article)
 
 %br
+
 
 = link_to 'New Article', new_article_path
