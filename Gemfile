@@ -5,8 +5,14 @@ ruby '2.7.1'
 
 # react
 gem 'react-rails'
+
+# $ rails haml:erb2haml
 gem "haml-rails"
+
 gem "sanitize"
+
+# font awsome helper
+gem "font-awesome-rails"
 
 # User accounts
 gem 'devise'
