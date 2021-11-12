@@ -26,7 +26,7 @@ class RalliesController < ApplicationController
 
     respond_to do |format|
       if @rally.save
-        format.html { redirect_to @rally, notice: "Rally was successfully created." }
+        format.html { redirect_to @rally, notice: "Le rallye \"#{@rally.title}\" a été ajouté."  }
         format.json { render :show, status: :created, location: @rally }
       else
         format.html { render :new, status: :unprocessable_entity }

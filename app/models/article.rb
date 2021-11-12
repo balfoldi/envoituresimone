@@ -6,7 +6,7 @@ class Article < ApplicationRecord
 
   def to_react
     self.attributes.merge(
-      image_url: Rails.application.routes.url_helpers.rails_blob_path(self.image, only_path: true),
+      image_url: self.image.attached? && Rails.application.routes.url_helpers.rails_blob_path(self.image, only_path: true),
       date: self.created_at.strftime("Publié le %d/%m/%Y"),
       )
   end

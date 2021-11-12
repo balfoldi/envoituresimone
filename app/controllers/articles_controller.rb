@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.save
         @articles = Article.all
-        format.html { redirect_to rally_path(@article.rally), notice: "Article was successfully created." }
+        format.html { redirect_to rally_path(@article.rally), notice: "L'article \"#{@article.title}\" a été ajouté." }
         format.json { render :index, status: :created, location: @article }
         format.js { }
       else

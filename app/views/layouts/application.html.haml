@@ -10,8 +10,14 @@
     -# = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body.h-100.d-flex.flex-column
-    = react_component("layout/NavBar", rallies: @rallies, new_rally_path: new_rally_path)
+    = render "layouts/navbar"
     .mb-3
+      - if notice
+        %p.alert.alert-success
+          = notice
+      - if alert
+        %p.alert.alert-danger
+          = alert
       = yield
     .mt-auto
-      = react_component("layout/Footer")
+    = render "layouts/footer"
