@@ -1,7 +1,8 @@
 .container
   = react_component("Rally", rally: @rally)
 
-  = render 'articles/form', article: Article.new, rally: @rally
+  - if current_user
+    = render 'articles/form', article: Article.new, rally: @rally
 
   %h3.text-center Articles
   - @rally.articles.each do |article|

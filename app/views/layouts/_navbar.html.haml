@@ -11,10 +11,20 @@
           %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
             Rallyes
           %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            %li
-              = link_to "Rajouter un rallye", new_rally_path, class: "dropdown-item"
+            - if current_user
+              %li
+                = link_to "Rajouter un rallye", new_rally_path, class: "dropdown-item"
             - @rallies.each do |rally|
               %li
                 = link_to rally.title, rally_path(rally), class: "dropdown-item"
-
-        %li.nav-item
+      %ul.navbar-nav.d-flex.flex-reverse
+        %li.nav-item.dropdown
+          %a#navbarDropdown2.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
+            = fa_icon "user-circle 4x", class: current_user && "text-warning"
+          %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            - if current_user
+              %li
+                = link_to "Deconnexion", destroy_user_session_path, method: "DELETE", class: "dropdown-item"
+            - else
+              %li
+                = link_to "Connexion", new_user_session_path, class: "dropdown-item"

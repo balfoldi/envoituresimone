@@ -7,17 +7,16 @@
     = csrf_meta_tags
     = csp_meta_tag
     = favicon_link_tag image_path('envoituresimone-logo.ico')
-    -# = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body.h-100.d-flex.flex-column
     = render "layouts/navbar"
-    .mb-3
-      - if notice
-        %p.alert.alert-success
-          = notice
-      - if alert
-        %p.alert.alert-danger
-          = alert
-      = yield
+    - if notice
+      .alert.alert-success.mb-0
+        = notice
+    - if alert
+      .alert.alert-danger.mb-0
+        = alert
+    = yield
     .mt-auto
     = render "layouts/footer"
