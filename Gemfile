@@ -16,6 +16,7 @@ gem "font-awesome-rails"
 
 # User accounts
 gem 'devise'
+gem 'devise-i18n'
 
 # amazone cloude gem
 gem "aws-sdk-s3", require: false
