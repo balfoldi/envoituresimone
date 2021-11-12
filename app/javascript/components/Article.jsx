@@ -4,7 +4,7 @@ const sanitized = require("sanitized");
 
 const ArticlesCard = ({ article }) => {
   return (
-    <Card className="mb-5">
+    <Card>
       {article.image_url ? (
         <>
           <Card.Img variant="top" src={article.image_url} />

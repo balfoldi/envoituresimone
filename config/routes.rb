@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "/partners", to: "statics#partners"
   get "/become_partner", to: "statics#become_partner"
 
-  resources :rallies do
+  resources :rallies, only: [:edit, :update, :show, :destory] do
     resources :articles
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

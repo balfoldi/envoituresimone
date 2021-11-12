@@ -7,7 +7,6 @@ const ArticlesCard = ({rally}) => {
     <>
       <h3 className="text-center" >{rally?.title}</h3>
       <div dangerouslySetInnerHTML={{__html: sanitized(rally?.presentation)}}/>
-      <hr />
     </>
   )
 }

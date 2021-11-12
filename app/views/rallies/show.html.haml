@@ -1,9 +1,35 @@
 .container
   = react_component("Rally", rally: @rally)
-
+  - if current_user
+    %button.ml-auto.btn.btn-primary.mb-3{"data-bs-target" => "#exampleModal", "data-bs-toggle" => "modal", :type => "button"}
+      Editer le rally
+    %button.ml-auto.btn.btn-warning.mb-3{"data-bs-target" => "#delteModal", "data-bs-toggle" => "modal", :type => "button"}
+      Supprimer le rally
+  %hr
+  #exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h5#exampleModalLabel.modal-title Edition du rallye
+          %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+        .modal-body
+          = render 'form', rally: @rally
+  #delteModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h5#exampleModalLabel.modal-title Suppression du rallye
+          %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+        .modal-body
+          %p.danger La suppression du rallye est irréversible, êtes-vous sûr de vouloir continuer?
+        .modal-footer
+          %button.btn.btn-secondary{"data-bs-dismiss" => "modal", :type => "button"} Annuler
+          = link_to rally_path(@rally), method: "DELETE" do
+            %button.btn.btn-danger{:type => "button"} Effacer
   - if current_user
     = render 'articles/form', article: Article.new, rally: @rally
 
   %h3.text-center Articles
   - @rally.articles.each do |article|
     = react_component("Article", article: article.to_react)
+    %hr
