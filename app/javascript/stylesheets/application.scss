@@ -1,1 +1,15 @@
 @import "bootstrap";
+
+
+.bg-hero-image{
+  background-image: url("../images/envoituresimone-banner-trimmed.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  min-height: 1000px;
+}
+
+.bg-transparent-light{
+  background: rgba(255,255,255, 0.6)
+}
