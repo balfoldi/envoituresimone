@@ -1,5 +1,15 @@
-@import "bootstrap";
+$theme-colors: (
+  "primary":    #b18fe9,
+  "secondary":  #8c96b3,
+  "success":    #d1f3b1,
+  "info":       #31d5eb,
+  "warning":    #f89b64,
+  "danger":     #c90909,
+  "dark":       #462424,
+  "light":      #faf3dd,
+  ) !default;
 
+  @import "bootstrap";
 
 .bg-hero-image{
   background-image: url("../images/envoituresimone-banner-trimmed.png");
