@@ -1,0 +1,28 @@
+.div.position-relative
+  = react_component("Thank", thank: thank)
+  - if current_user
+    %a.position-absolute.top-0.end-0.p-1{"data-bs-target" => "#thank-#{thank.id}", "data-bs-toggle" => "modal", :type => "button"}
+      = fa_icon "edit 2x"
+    .modal.fade{id: "thank-#{thank.id}", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
+      .modal-dialog.modal-xl
+        .modal-content
+          .modal-header
+            %h5#exampleModalLabel.modal-title Edition du remerciement
+            %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+          .modal-body
+            = render 'form', thank: thank
+            %button.w-100.ml-auto.btn.btn-warning.mb-3{"data-bs-target" => "#thankDelete-#{thank.id}", "data-bs-toggle" => "modal", :type => "button"}
+              Supprimer le remerciement
+            %button.w-100.btn.btn-secondary{"data-bs-dismiss" => "modal", :type => "button"} Annuler
+    .modal.fade{id: "thankDelete-#{thank.id}", "aria-hidden" => "true", "aria-labelledby" => "editionModalLabel", :tabindex => "-1"}
+      .modal-dialog.modal-dialog-centered
+        .modal-content
+          .modal-header
+            %h5#exampleModalLabel.modal-title Suppression du remerciement
+            %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+          .modal-body
+            %p.danger La suppression du remerciement est irréversible, êtes-vous sûr de vouloir continuer?
+          .modal-footer
+            %button.btn.btn-secondary{"data-bs-dismiss" => "modal", :type => "button"} Annuler
+            = link_to thank_path(thank), method: "DELETE" do
+              %button.btn.btn-danger{:type => "button"} Effacer

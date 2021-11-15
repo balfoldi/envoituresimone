@@ -1,0 +1,18 @@
+.container.pt-3
+  %h1 Remerciements
+  %hr
+  - if current_user
+    %button.w-100.btn.btn-primary.mb-3{"data-bs-target" => "#articleNew", "data-bs-toggle" => "modal", :type => "button"}
+      Ajouter un remerciement
+    #articleNew.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
+      .modal-dialog.modal-xl
+        .modal-content
+          .modal-header
+            %h5#exampleModalLabel.modal-title Ajouter un remerciement
+            %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+          .modal-body
+            = render 'form', thank: Thank.new
+  .d-flex.row.justify-content-around
+    - @thanks.each do |thank|
+      = render "show", thank: thank
+      %hr.my-2

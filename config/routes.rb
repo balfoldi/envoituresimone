@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/team", to: "statics#team"
 
   resources :partners, only: [:create, :update, :index, :destroy]
+  resources :thanks, only: [:create, :update, :index, :destroy]
   resources :rallies, only: [:new, :edit, :update, :show, :destroy] do
     resources :articles, only: [:create, :update, :destroy]
   end

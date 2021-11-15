@@ -1,0 +1,4 @@
+= form_with model: thank do |f|
+  %label Text
+  = react_component("Ckeditor5", name: "thank[content]", value: thank.content)
+  = f.submit thank.new_record? ? "Créer un remerciement" : "Editer le remerciement", { class: "btn btn-success mb-3 w-100"}

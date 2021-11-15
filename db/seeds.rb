@@ -1,4 +1,4 @@
-[User, Rally, Article].each(&:delete_all)
+[User, Rally, Article, Thank, Partner].each(&:delete_all)
 
 rallies = FactoryBot.create_list(:rally, 3)
 
@@ -9,3 +9,5 @@ end
 FactoryBot.create(:user, email: "admin@yopmail.com")
 
 FactoryBot.create_list(:partner, 4)
+
+FactoryBot.create_list(:thank, 2)
