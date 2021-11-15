@@ -2,7 +2,7 @@ import React from 'react'
 import Card from "react-bootstrap/Card"
 const sanitized = require("sanitized");
 
-const ArticlesCard = ({ article }) => {
+const Article = ({ article }) => {
   return (
     <Card>
       {article.image_url ? (
@@ -23,4 +23,4 @@ const ArticlesCard = ({ article }) => {
   )
 }
 
-export default ArticlesCard
+export default Article

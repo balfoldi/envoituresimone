@@ -1,0 +1,15 @@
+= form_with model: partner do |f|
+  %label Nom
+  = f.text_field :name, { class: "form-control mb-3", placeholder: "Super partenaire..." }
+  %label Lien vers le site de mon partenaire
+  = f.text_field :url, { class: "form-control mb-3", placeholder: "www.site-de-mon-partenaire.com..." }
+  %label Logo
+  -if f.object.logo.attached?
+    .div{ style: "width: 18rem" }
+      = image_tag f.object.logo, class: "img-fluid"
+    .form-check.form-switch
+    = f.check_box :delete_logo, class: "form-check-input", id: "deleteLogo"
+    %label.form-check-label{:for => "deleteLogo"} Effacer le logo?
+  = f.file_field :logo, { class: "form-control mb-3", accept: 'image/png,image/gif,image/jpeg' }
+  = react_component("Ckeditor5", name: "partner[description]", value: partner.description)
+  = f.submit partner.new_record? ? "Créer un partenaire" : "Editer le partenaire", { class: "btn btn-success mb-3 w-100"}

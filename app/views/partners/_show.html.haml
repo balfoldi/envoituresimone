@@ -1,0 +1,28 @@
+.div.position-relative{ style: "width: 18rem" }
+  = react_component("Partner", partner: partner.to_react)
+  - if current_user
+    %a.position-absolute.top-0.end-0.p-1{"data-bs-target" => "#partner-#{partner.id}", "data-bs-toggle" => "modal", :type => "button"}
+      = fa_icon "edit 2x"
+    .modal.fade{id: "partner-#{partner.id}", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
+      .modal-dialog.modal-xl
+        .modal-content
+          .modal-header
+            %h5#exampleModalLabel.modal-title Edition du partenaire
+            %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+          .modal-body
+            = render 'partners/form', partner: partner
+            %button.w-100.ml-auto.btn.btn-warning.mb-3{"data-bs-target" => "#partnerDelete-#{partner.id}", "data-bs-toggle" => "modal", :type => "button"}
+              Supprimer le partenaire
+            %button.w-100.btn.btn-secondary{"data-bs-dismiss" => "modal", :type => "button"} Annuler
+    .modal.fade{id: "partnerDelete-#{partner.id}", "aria-hidden" => "true", "aria-labelledby" => "editionModalLabel", :tabindex => "-1"}
+      .modal-dialog.modal-dialog-centered
+        .modal-content
+          .modal-header
+            %h5#exampleModalLabel.modal-title Suppression du partenaire
+            %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+          .modal-body
+            %p.danger La suppression du partenaire est irréversible, êtes-vous sûr de vouloir continuer?
+          .modal-footer
+            %button.btn.btn-secondary{"data-bs-dismiss" => "modal", :type => "button"} Annuler
+            = link_to partner_path(partner), method: "DELETE" do
+              %button.btn.btn-danger{:type => "button"} Effacer

@@ -12,8 +12,8 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article.image.purge if params[:article][:delete_image] == "1"
     if @article.update(article_params)
+      @article.image.purge if params[:article][:delete_image] == "1"
       redirect_to @article.rally, notice: "L'article \"#{@article.title}\" a été mis à jour."
     else
       render :new, alert: "Erreur lors de la mise à jour de l'article."

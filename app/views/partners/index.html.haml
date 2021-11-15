@@ -1,0 +1,18 @@
+.container.pt-3
+  %h1 Partenaires
+  %i PARCEQUE C'EST AVEC VOUS QUE NOUS Y ARRIVERONS
+  %hr
+  - if current_user
+    %button.w-100.btn.btn-primary.mb-3{"data-bs-target" => "#articleNew", "data-bs-toggle" => "modal", :type => "button"}
+      Ajouter un partenaire
+    #articleNew.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
+      .modal-dialog.modal-xl
+        .modal-content
+          .modal-header
+            %h5#exampleModalLabel.modal-title Ajouter un partenaire
+            %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+          .modal-body
+            = render 'partners/form', partner: Partner.new
+  .d-flex.row.justify-content-around
+    - @partners.each do |partner|
+      = render "show", partner: partner
