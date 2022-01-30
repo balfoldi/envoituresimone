@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :partners, only: [:create, :update, :index, :destroy]
   resources :thanks, only: [:create, :update, :index, :destroy]
-  resources :rallies, only: [:new, :edit, :update, :show, :destroy] do
+  resources :rallies, only: [:new, :edit, :update, :create, :show, :destroy] do
     resources :articles, only: [:create, :update, :destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
