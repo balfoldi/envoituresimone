@@ -23,3 +23,4 @@ test:
 production:
   <<: *default
   database: db/envoituresimone_production
+  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
